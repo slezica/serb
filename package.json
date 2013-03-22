@@ -2,21 +2,35 @@
   "name": "serve",
   "version": "0.0.1",
   "description": "a flexible, 100% optional config command-line file server",
+
   "author": "Santiago Lezica <slezica89@gmail.com>",
   "license": "BSD",
+
   "main": "bin/serve",
+  "preferGlobal": true,
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "make"
   },
+
+  "bin": {
+    "serve": "bin/serve"
+  },
+
   "repository": "",
   "keywords": [
     "cli",
     "server"
   ],
+
   "dependencies": {
     "union": "~0.3.7",
     "ecstatic": "~0.4.1",
     "optimist": "~0.3.5",
     "colors": "~0.6.0-1"
+  },
+
+  "devDependencies": {
+    "coffee-script": "~1.6.2"
   }
 }

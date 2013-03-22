@@ -1,4 +1,9 @@
-all:
+all: clean build
+
+clean:
+	rm -rf lib bin
+
+build:
 	mkdir -p lib bin
 	coffee -cs < src/server.coffee > lib/server.js
 
