@@ -2,7 +2,7 @@ fs       = require 'fs'
 union    = require 'union'
 ecstatic = require 'ecstatic'
 
-exports.defaults = DEFAULTS =
+@defaults =
   root : '.'
 
   index: true   # Redirect to index.html
@@ -21,8 +21,8 @@ merge = (objects...) ->
 
 take = (context, f) -> f.call context
 
-exports.createServer = (options) ->
-  take merge(DEFAULTS, options), ->
+@createServer = (options) ->
+  take merge(@defaults, options), ->
     union.createServer
       headers: @headers
 
