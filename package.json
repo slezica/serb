@@ -17,7 +17,11 @@
     "serve": "bin/serve"
   },
 
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:slezica/serve.git"
+  },
+
   "keywords": [
     "cli",
     "server"
