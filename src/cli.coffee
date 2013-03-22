@@ -39,7 +39,7 @@ argv = optimist.options(
 ).argv
 
 if argv.h
-  console.log @help()
+  console.log optimist.help()
   process.exit()
 
 server.createServer(
