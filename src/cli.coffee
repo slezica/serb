@@ -1,9 +1,23 @@
-colors   = require 'colors'
+colors  = require 'colors'
+server  = require '../lib/server.js'
 optimist = require 'optimist'
-server   = require '../lib/server.js'
 
-optimist.usage 'serve [options]'
-argv = optimist.options(
+getopts = (usage, desc) ->
+  optimist.usage usage
+  argv = optimist.options(desc).argv
+
+  if argv.h
+    optimist.showHelp()
+    process.exit()
+
+  # Make options available as its aliases, to keep the code readable
+  for arg of argv when arg of desc
+    argv[desc[arg].alias] = argv[arg]
+
+  argv
+
+
+$ = getopts 'serve [options]',
   h:
     alias  : 'help'
     desc   : 'Display this message and exit'
@@ -36,14 +50,9 @@ argv = optimist.options(
     alias  : 'ext'
     desc   : 'Implicit extension for URLs lacking one'
     default: false
-).argv
-
-if argv.h
-  console.log optimist.help()
-  process.exit()
 
 server.createServer(
-  index: argv.i
-  ext  : argv.e
-  dirs : argv.d
-).listen argv.p, argv.a
+  index: $.index
+  ext  : $.ext
+  dirs : $.dirs
+).listen $.port, $.address
