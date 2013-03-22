@@ -21,7 +21,7 @@ merge = (objects...) ->
 
 take = (context, f) -> f.call context
 
-@createServer = (options) ->
+@createServer = (options) =>
   take merge(@defaults, options), ->
     union.createServer
       headers: @headers
