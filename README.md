@@ -1,23 +1,23 @@
-# serf
+# serb
 
-The `serf` command-line utility will serve the current working directory over HTTP, much like python's `SimpleHTTPServer`.
+The `serb` command-line utility will serve the current working directory over HTTP, much like python's `SimpleHTTPServer`.
 
 It is, however, a lot more powerful and a lot more flexible.
 
 # installation
 
-    npm install -g serf
+    npm install -g serb
 
 
 # basic usage
 
-    ~$ serf
+    ~$ serb
 
 That's it. Your `cwd` is at localhost:8000.
 
 
 # advanced usage
-    serf [options]
+    serb [options]
 
     Options:
       -h, --help     Display this message and exit                [boolean]  [default: false]

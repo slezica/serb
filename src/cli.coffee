@@ -28,7 +28,7 @@ parse_headers = (headers) ->
       dict (header.split ':' for header in headers)
 
 
-$ = getopts 'serf [options]',
+$ = getopts 'serb [options]',
   h:
     alias  : 'help'
     desc   : 'Display this message and exit'

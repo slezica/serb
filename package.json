@@ -1,20 +1,20 @@
 {
-  "name": "serf",
+  "name": "serb",
   "version": "0.0.1",
   "description": "a flexible, 100% optional config command-line file server",
   "author": "Santiago Lezica <slezica89@gmail.com>",
   "license": "BSD",
-  "main": "bin/serf",
+  "main": "bin/serb",
   "preferGlobal": true,
   "scripts": {
     "prepublish": "make"
   },
   "bin": {
-    "serf": "bin/serf"
+    "serb": "bin/serb"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:slezica/serf.git"
+    "url": "git@github.com:slezica/serb.git"
   },
   "keywords": [
     "cli",
