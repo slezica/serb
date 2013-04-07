@@ -1,6 +1,8 @@
-colors  = require 'colors'
-server  = require '../lib/server.js'
+colors   = require 'colors'
+server   = require '../lib/server.js'
 optimist = require 'optimist'
+
+require('idiom').export global
 
 getopts = (usage, desc) ->
   optimist.usage usage
@@ -17,7 +19,16 @@ getopts = (usage, desc) ->
   argv
 
 
-$ = getopts 'serve [options]',
+parse_headers = (headers) ->
+  switch kindof headers
+    when 'Undefined' then {}
+    when 'String'
+      parse_headers [headers]
+    when 'Array'
+      dict (header.split ':' for header in headers)
+
+
+$ = getopts 'serf [options]',
   h:
     alias  : 'help'
     desc   : 'Display this message and exit'
@@ -48,11 +59,16 @@ $ = getopts 'serve [options]',
 
   e:
     alias  : 'ext'
-    desc   : 'Implicit extension for URLs lacking one'
+    desc   : 'Assume given extension for URLs lacking one'
     default: false
 
+  H:
+    alias  : 'header'
+    desc   : 'Set a "name:value" header (repeatable)'
+
 server.createServer(
-  index: $.index
-  ext  : $.ext
-  dirs : $.dirs
+  index  : $.index
+  ext    : $.ext
+  dirs   : $.dirs
+  headers: parse_headers $.header
 ).listen $.port, $.address

@@ -2,6 +2,12 @@ fs       = require 'fs'
 union    = require 'union'
 ecstatic = require 'ecstatic'
 
+lcase = (object) ->
+  for own key, value of object
+    delete object[key]
+    object[key.toLowerCase()] = value
+  return
+
 @defaults =
   root : '.'
 
@@ -13,16 +19,8 @@ ecstatic = require 'ecstatic'
   headers:    {}
   middleware: []
 
-merge = (objects...) ->
-  result = {}
-  for object in objects
-    result[key] = object[key] for own key of object
-  result
-
-take = (context, f) -> f.call context
-
 @createServer = (options) =>
-  take merge(@defaults, options), ->
+  (->
     union.createServer
       headers: @headers
 
@@ -33,5 +31,5 @@ take = (context, f) -> f.call context
           autoIndex : @index
           cache     : @cache
           defaultExt: @ext
-
       ]
+  ).call merge(@defaults, options)
