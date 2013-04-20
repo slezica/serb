@@ -1,7 +1,7 @@
-all: clean build
+all: build
 
 clean:
-	rm -rf lib bin
+	rm -rf lib bin node_modules
 
 build:
 	mkdir -p lib bin
@@ -11,3 +11,10 @@ build:
 	coffee -csb < src/cli.coffee >> bin/serb
 	chmod +x bin/serb
 
+run: build
+	bin/serb -d
+
+dist: clean build
+
+publish: dist
+	npm publish

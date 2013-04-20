@@ -21,11 +21,21 @@ getopts = (usage, desc) ->
 
 parse_headers = (headers) ->
   switch kindof headers
-    when 'Undefined' then {}
-    when 'String'
+    when undefined then {}
+    when String
       parse_headers [headers]
-    when 'Array'
+    when Array
       dict (header.split ':' for header in headers)
+
+
+logging = (req, res, next) ->
+  res.on 'end', ->
+    method = req.method.bold.green
+    target = req.url
+    status = res.statusCode.toString().bold.red
+
+    console.log method, target, status
+  next()
 
 
 $ = getopts 'serb [options]',
@@ -43,7 +53,7 @@ $ = getopts 'serb [options]',
   a:
     alias  : 'address'
     desc   : 'IP address to bind to'
-    default: '0.0.0.0'
+    default: 'localhost'
 
   i:
     alias  : 'index'
@@ -66,9 +76,14 @@ $ = getopts 'serb [options]',
     alias  : 'header'
     desc   : 'Set a "name:value" header (repeatable)'
 
+console.log 'Serving at', ($.address + ':' + $.port).green.bold + '...'
+
 server.createServer(
-  index  : $.index
-  ext    : $.ext
-  dirs   : $.dirs
-  headers: parse_headers $.header
+
+  index   : $.index
+  ext     : $.ext
+  dirs    : $.dirs
+  headers : parse_headers $.header
+  preware: [logging]
+
 ).listen $.port, $.address

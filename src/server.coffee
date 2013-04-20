@@ -2,12 +2,6 @@ fs       = require 'fs'
 union    = require 'union'
 ecstatic = require 'ecstatic'
 
-lcase = (object) ->
-  for own key, value of object
-    delete object[key]
-    object[key.toLowerCase()] = value
-  return
-
 @defaults =
   root : '.'
 
@@ -16,20 +10,22 @@ lcase = (object) ->
   dirs : true   # Show directory listings
   cache: 600    # Cache expiry in seconds
 
-  headers:    {}
-  middleware: []
+  headers : {}
+  preware : []
+  postware: []
 
 @createServer = (options) =>
   (->
     union.createServer
       headers: @headers
 
-      before: @middleware.concat [
+      before: @preware.concat([
         ecstatic @root,
 
           showDir   : @dirs
           autoIndex : @index
           cache     : @cache
           defaultExt: @ext
-      ]
+
+      ]).concat @postware
   ).call merge(@defaults, options)

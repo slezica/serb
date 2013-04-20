@@ -6,9 +6,6 @@
   "license": "BSD",
   "main": "bin/serb",
   "preferGlobal": true,
-  "scripts": {
-    "prepublish": "make"
-  },
   "bin": {
     "serb": "bin/serb"
   },
@@ -25,7 +22,7 @@
     "ecstatic": "~0.4.1",
     "optimist": "~0.3.5",
     "colors": "~0.6.0-1",
-    "idiom": "~0.1.0"
+    "idiom": "~0.2.0"
   },
   "devDependencies": {
     "coffee-script": "~1.6.2"
