@@ -21,5 +21,8 @@ dist: clean build
 install:
 	npm install -g
 
+uninstall:
+	npm uninstall -g serb
+
 publish: dist
 	npm publish
