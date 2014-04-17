@@ -11,9 +11,9 @@ It is, however, a lot more powerful and a lot more flexible.
 
 # basic usage
 
-    ~$ serb
+    ~$ serb [root]
 
-That's it. Your `cwd` is at localhost:8000.
+That's it. Your `cwd` or `root` is at localhost:8000.
 
 
 # advanced usage
