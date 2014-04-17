@@ -81,6 +81,7 @@ logging = (req, res, next) ->
 
   server.createServer(
 
+    root    : $._[0] || '.'
     index   : $.index
     ext     : $.ext
     dirs    : $.dirs
