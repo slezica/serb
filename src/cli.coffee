@@ -38,52 +38,53 @@ logging = (req, res, next) ->
   next()
 
 
-$ = getopts 'serb [options]',
-  h:
-    alias  : 'help'
-    desc   : 'Display this message and exit'
-    boolean: true
-    default: false
+@start = ->
+  $ = getopts 'serb [options]',
+    h:
+      alias  : 'help'
+      desc   : 'Display this message and exit'
+      boolean: true
+      default: false
 
-  p:
-    alias  : 'port'
-    desc   : 'Port to bind to'
-    default: 8000
+    p:
+      alias  : 'port'
+      desc   : 'Port to bind to'
+      default: 8000
 
-  a:
-    alias  : 'address'
-    desc   : 'IP address to bind to'
-    default: 'localhost'
+    a:
+      alias  : 'address'
+      desc   : 'IP address to bind to'
+      default: 'localhost'
 
-  i:
-    alias  : 'index'
-    desc   : 'Automatically redirect to index.html'
-    default: true
-    boolean: true
+    i:
+      alias  : 'index'
+      desc   : 'Automatically redirect to index.html'
+      default: true
+      boolean: true
 
-  d:
-    alias  : 'dirs'
-    desc   : 'Show directory listings'
-    default: false
-    boolean: true
+    d:
+      alias  : 'dirs'
+      desc   : 'Show directory listings'
+      default: false
+      boolean: true
 
-  e:
-    alias  : 'ext'
-    desc   : 'Assume given extension for URLs lacking one'
-    default: false
+    e:
+      alias  : 'ext'
+      desc   : 'Assume given extension for URLs lacking one'
+      default: false
 
-  H:
-    alias  : 'header'
-    desc   : 'Set a "name:value" header (repeatable)'
+    H:
+      alias  : 'header'
+      desc   : 'Set a "name:value" header (repeatable)'
 
-console.log 'Serving at', ($.address + ':' + $.port).green.bold + '...'
+  console.log 'Serving at', ($.address + ':' + $.port).green.bold + '...'
 
-server.createServer(
+  server.createServer(
 
-  index   : $.index
-  ext     : $.ext
-  dirs    : $.dirs
-  headers : parse_headers $.header
-  preware: [logging]
+    index   : $.index
+    ext     : $.ext
+    dirs    : $.dirs
+    headers : parse_headers $.header
+    preware: [logging]
 
-).listen $.port, $.address
+  ).listen $.port, $.address
