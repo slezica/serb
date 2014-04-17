@@ -1,11 +1,12 @@
 {
   "name": "serb",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a flexible, 100% optional config command-line file server",
   "author": "Santiago Lezica <slezica89@gmail.com>",
   "license": "BSD",
   "main": "bin/serb",
   "preferGlobal": true,
+  "files": ["lib", "bin"],
   "bin": {
     "serb": "bin/serb"
   },
