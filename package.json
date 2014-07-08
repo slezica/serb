@@ -1,6 +1,6 @@
 {
   "name": "serb",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "a flexible, 100% optional config command-line file server",
   "author": "Santiago Lezica <slezica89@gmail.com>",
   "license": "BSD",
@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "union": "~0.3.7",
-    "ecstatic": "~0.4.1",
+    "ecstatic": "~0.5.4",
     "optimist": "~0.3.5",
     "colors": "~0.6.0-1",
     "idiom": "~0.2.0"
