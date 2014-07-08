@@ -39,6 +39,8 @@ logging = (req, res, next) ->
 
 
 @start = ->
+  process.title = 'serb'
+
   $ = getopts 'serb [options]',
     h:
       alias  : 'help'
